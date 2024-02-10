@@ -1,0 +1,33 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+canvas {
+    background: #eee;
+    display: block;
+    margin: 100px auto;
+}
+
+button {
+    background: #a00;
+    display: block;
+    margin: 10px auto;
+    padding: 20px;
+
+}
+
+input {
+    display: block;
+    margin: 10px auto;
+    padding: 20px;
+    background: #eee;
+}
+
+.controls {
+    display: flex;
+}
+
+body {
+    background: #000;
+};
