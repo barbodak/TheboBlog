@@ -32,7 +32,7 @@ function move(movment) {
         movment.y_dir *= -1;
     var dis = Math.sqrt(Math.abs(movment.x - mouseX) * Math.abs(movment.x - mouseX) + Math.abs(movment.y - mouseY) * Math.abs(movment.y - mouseY));
     if (dis <= 300)
-        movment.x += movment.x_dir * 5, movment.y += movment.y_dir * 5;
+        movment.x += movment.x_dir * 6, movment.y += movment.y_dir * 6;
     else
         movment.x += movment.x_dir, movment.y += movment.y_dir;
 }

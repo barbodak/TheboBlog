@@ -28,7 +28,7 @@ function move(movment : {x : number, y : number, x_dir : number, y_dir : number}
     if (movment.y <= 0 && movment.y_dir <= 0) movment.y_dir *= -1;
     let dis = Math.sqrt(Math.abs(movment.x - mouseX) * Math.abs(movment.x - mouseX) + Math.abs(movment.y - mouseY) * Math.abs(movment.y - mouseY));
     if (dis <= 300)
-        movment.x += movment.x_dir * 5, movment.y += movment.y_dir * 5;
+        movment.x += movment.x_dir * 6, movment.y += movment.y_dir * 6;
     else
         movment.x += movment.x_dir, movment.y += movment.y_dir;
 }
