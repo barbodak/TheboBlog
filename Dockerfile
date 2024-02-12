@@ -9,6 +9,7 @@ COPY nginx.conf /etc/nginx/conf.d
 
 # Copy the static content (HTML, CSS, JS) into the container
 COPY ./colorCube /usr/share/nginx/html
+COPY output.css /usr/share/nginx/html
 
 # Expose port 80 to the outside
 EXPOSE 80
