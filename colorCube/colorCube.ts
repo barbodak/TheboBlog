@@ -1,18 +1,32 @@
 const canvas = document.getElementById('gameCanvas')! as HTMLCanvasElement;
 const input = document.getElementById("mytext")! as HTMLInputElement;
-const size_input = document.getElementById("mysize")! as HTMLInputElement;
-canvas.width = window.innerWidth * 0.8;
-canvas.height = window.innerHeight * 0.7;
+const size_input = document.getElementById("myRange")! as HTMLInputElement;
+const check = document.getElementById("myCheck")! as HTMLInputElement;
+canvas.width = window.innerWidth * 0.9;
+canvas.height = window.innerHeight * 0.75;
 const ctx = canvas.getContext('2d')!;
 
 let cubes : {x : number, y : number, x_dir : number, y_dir : number;}[] = [];
 let colors : string[] = [];
 let state = true;
-let mouseOn = true;
+let mouseOn = false;
 let preVal = 0;
 let mouseX : number;
 let mouseY : number;
 let siz = 25;
+
+function isEmpty(x : number, y : number) {
+    const imageData = ctx.getImageData(x, y, 1, 1);
+    const data = imageData.data;
+    const r = data[0];
+    const g = data[1];
+    const b = data[2];
+    const a = data[3];
+    if (a !== 0 && (r !== 238 || g !== 238 || b !== 238))
+      return false;
+    return true;
+}
+
 function draw(x : number, y : number, c : string, x_size : number = siz, y_size : number = siz) {
     ctx.beginPath();
     ctx.rect(x, y, x_size, y_size);
@@ -86,7 +100,9 @@ canvas.addEventListener('mousemove', function(event) {
 
 
 
+handleChange();
+check.addEventListener('change', dissMouse);
 input.addEventListener('change', handleChange);
-size_input.addEventListener('change', () => {siz = size_input.valueAsNumber;});
+size_input.addEventListener('change', () => {siz = Math.max((size_input.valueAsNumber / 100) * (size_input.valueAsNumber / 100) * (size_input.valueAsNumber / 100) * Math.min(canvas.height, canvas.width), 1);});
 setInterval(init_cube, 10);
 

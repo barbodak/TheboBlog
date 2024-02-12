@@ -1,0 +1,17 @@
+{
+  "name": "theboblog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "tailwindcss -i styles.css -o output.css",
+    "watch-css": "tailwindcss -i styles.css -o output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.3.3"
+  }
+}

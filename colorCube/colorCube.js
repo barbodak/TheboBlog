@@ -1,17 +1,29 @@
 var canvas = document.getElementById('gameCanvas');
 var input = document.getElementById("mytext");
-var size_input = document.getElementById("mysize");
-canvas.width = window.innerWidth * 0.8;
-canvas.height = window.innerHeight * 0.7;
+var size_input = document.getElementById("myRange");
+var check = document.getElementById("myCheck");
+canvas.width = window.innerWidth * 0.9;
+canvas.height = window.innerHeight * 0.75;
 var ctx = canvas.getContext('2d');
 var cubes = [];
 var colors = [];
 var state = true;
-var mouseOn = true;
+var mouseOn = false;
 var preVal = 0;
 var mouseX;
 var mouseY;
 var siz = 25;
+function isEmpty(x, y) {
+    var imageData = ctx.getImageData(x, y, 1, 1);
+    var data = imageData.data;
+    var r = data[0];
+    var g = data[1];
+    var b = data[2];
+    var a = data[3];
+    if (a !== 0 && (r !== 238 || g !== 238 || b !== 238))
+        return false;
+    return true;
+}
 function draw(x, y, c, x_size, y_size) {
     if (x_size === void 0) { x_size = siz; }
     if (y_size === void 0) { y_size = siz; }
@@ -77,6 +89,8 @@ canvas.addEventListener('mousemove', function (event) {
         mouseY = event.clientY - rect.top;
     }
 });
+handleChange();
+check.addEventListener('change', dissMouse);
 input.addEventListener('change', handleChange);
-size_input.addEventListener('change', function () { siz = size_input.valueAsNumber; });
+size_input.addEventListener('change', function () { siz = Math.max((size_input.valueAsNumber / 100) * (size_input.valueAsNumber / 100) * (size_input.valueAsNumber / 100) * Math.min(canvas.height, canvas.width), 1); });
 setInterval(init_cube, 10);

@@ -1,33 +1,13 @@
-* {
-    padding: 0px;
-    margin: 0px;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-canvas {
-    background: #eee;
-    display: block;
-    margin: 100px auto;
-}
-
-button {
-    background: #a00;
-    display: block;
-    margin: 10px auto;
-    padding: 20px;
-
-}
-
-input {
-    display: block;
-    margin: 10px auto;
-    padding: 20px;
-    background: #eee;
-}
-
-.controls {
+html, body {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #eee;
 }
 
-body {
-    background: #000;
-};
+
