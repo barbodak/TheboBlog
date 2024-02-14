@@ -1,11 +1,22 @@
-FROM node:19 as build-vite
-WORKDIR /usr/src/app
+    # Use an official Node.js runtime as the base image
+    FROM node:19
 
-COPY package*.json ./
-RUN npm install
+    # Set the working directory in the container
+    WORKDIR /usr/src/app
 
-COPY . .
+    # Copy package.json and package-lock.json to the working directory
+    COPY package*.json ./
 
-RUN npm run build
+    # Install dependencies
+    RUN npm install
 
-ENTRYPOINT [ "/bin/sh", "-c" , "node build" ]
+    # Copy the rest of the application code to the working directory
+    COPY . .
+
+    # Build the Vite application
+    RUN npm run build
+
+    # Expose the port your app runs on (change port number if your Vite configuration uses a different port)
+    EXPOSE 3000
+
+    # Command to run the application
