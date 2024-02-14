@@ -1,19 +1,15 @@
-# Use the official Nginx image as the base image
-FROM nginx:alpine
+FROM node:19 as build-vite
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build
 
-# Remove the default Nginx configuration file
-RUN rm /etc/nginx/conf.d/default.conf
-
+# Stage 2: Setup NGINX and copy built assets
+FROM nginx:stable-alpine as production
+COPY --from=build-vite /app/dist /usr/share/nginx/html
 # Copy the Nginx configuration file into the container
-COPY nginx.conf /etc/nginx/conf.d
-
-# Copy the static content (HTML, CSS, JS) into the container
-COPY ./colorCube /usr/share/nginx/html
-COPY output.css /usr/share/nginx/html
-COPY 9B0846CF26E8C4B3874B6C6D72149C69.txt /usr/share/nginx/cert
-
-# Expose port 80 to the outside
+COPY default.conf /etc/nginx/conf.d
+RUN rm /etc/nginx/conf.d/default.conf
 EXPOSE 80
 
-# Start Nginx when the container launches
 CMD ["nginx", "-g", "daemon off;"]

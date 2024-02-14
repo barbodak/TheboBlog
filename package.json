@@ -1,17 +1,15 @@
 {
-  "name": "theboblog",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "vite-project",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "build-css": "tailwindcss -i styles.css -o output.css",
-    "watch-css": "tailwindcss -i styles.css -o output.css --watch"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.3.3"
+  "devDependencies": {
+    "typescript": "^5.2.2",
+    "vite": "^5.1.0"
   }
 }
