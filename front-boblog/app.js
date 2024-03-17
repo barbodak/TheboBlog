@@ -13,7 +13,9 @@ app.get('/', (req, res) => {
 });
 app.get('/cubes', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'colorCube.html'));
-  console.log('a request was made');
+});
+app.get('/is_ready', (req, res) => {
+    res.status(200).send('Service is ready');
 });
 
 // Start the server
