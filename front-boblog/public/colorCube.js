@@ -2,7 +2,6 @@ var canvas = document.getElementById('gameCanvas');
 var input = document.getElementById("mytext");
 var size_input = document.getElementById("myRange");
 var check = document.getElementById("myCheck");
-var hmmbutton = document.getElementById("hmmButton");
 canvas.width = window.innerWidth * 0.9;
 canvas.height = window.innerHeight * 0.75;
 var ctx = canvas.getContext('2d');
@@ -44,7 +43,7 @@ function move(movment) {
     if (movment.y <= 0 && movment.y_dir <= 0)
         movment.y_dir *= -1;
     var dis = Math.sqrt(Math.abs(movment.x - mouseX) * Math.abs(movment.x - mouseX) + Math.abs(movment.y - mouseY) * Math.abs(movment.y - mouseY));
-    if (dis <= 220)
+    if (dis <= 300)
         movment.x += movment.x_dir * 6, movment.y += movment.y_dir * 6;
     else
         movment.x += movment.x_dir, movment.y += movment.y_dir;
@@ -94,5 +93,4 @@ handleChange();
 check.addEventListener('change', dissMouse);
 input.addEventListener('change', handleChange);
 size_input.addEventListener('change', function () { siz = Math.max((size_input.valueAsNumber / 100) * (size_input.valueAsNumber / 100) * (size_input.valueAsNumber / 100) * Math.min(canvas.height, canvas.width), 1); });
-hmmbutton.addEventListener('click', handleClick);
 setInterval(init_cube, 10);

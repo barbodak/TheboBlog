@@ -1,12 +1,20 @@
-FROM node:18.19.0 AS node-build
+# Use the official Node.js 16 image as a parent image
+FROM node:16-alpine
 
+# Set the working directory in the container
 WORKDIR /usr/src/app
 
-COPY front-boblog/package*.json ./
+# Copy the package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
 RUN npm install
 
-COPY front-boblog/ .
+# Bundle the source code inside the Docker image
+COPY . .
 
-RUN npm run build
+# Make port 3000 available outside of this container
+EXPOSE 3000
 
-ENTRYPOINT [ "/bin/sh", "-c" , "node build" ]
+# Define the command to run the app
+CMD [ "node", "app.js" ]

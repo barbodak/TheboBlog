@@ -2,7 +2,6 @@ const canvas = document.getElementById('gameCanvas')! as HTMLCanvasElement;
 const input = document.getElementById("mytext")! as HTMLInputElement;
 const size_input = document.getElementById("myRange")! as HTMLInputElement;
 const check = document.getElementById("myCheck")! as HTMLInputElement;
-const hmmbutton = document.getElementById("hmmButton")! as HTMLButtonElement;
 canvas.width = window.innerWidth * 0.9;
 canvas.height = window.innerHeight * 0.75;
 const ctx = canvas.getContext('2d')!;
@@ -42,7 +41,7 @@ function move(movment : {x : number, y : number, x_dir : number, y_dir : number}
     if (movment.y >= canvas.height - siz && movment.y_dir > 0) movment.y_dir *= -1;
     if (movment.y <= 0 && movment.y_dir <= 0) movment.y_dir *= -1;
     let dis = Math.sqrt(Math.abs(movment.x - mouseX) * Math.abs(movment.x - mouseX) + Math.abs(movment.y - mouseY) * Math.abs(movment.y - mouseY));
-    if (dis <= 220)
+    if (dis <= 300)
         movment.x += movment.x_dir * 6, movment.y += movment.y_dir * 6;
     else
         movment.x += movment.x_dir, movment.y += movment.y_dir;
@@ -105,6 +104,5 @@ handleChange();
 check.addEventListener('change', dissMouse);
 input.addEventListener('change', handleChange);
 size_input.addEventListener('change', () => {siz = Math.max((size_input.valueAsNumber / 100) * (size_input.valueAsNumber / 100) * (size_input.valueAsNumber / 100) * Math.min(canvas.height, canvas.width), 1);});
-hmmbutton.addEventListener('click', handleClick);
 setInterval(init_cube, 10);
 
