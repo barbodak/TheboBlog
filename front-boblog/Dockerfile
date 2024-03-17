@@ -5,13 +5,13 @@ FROM node:16-alpine
 WORKDIR /usr/src/app
 
 # Copy the package.json and package-lock.json
-COPY package*.json ./
+COPY front-boblog/package*.json ./
 
 # Install dependencies
 RUN npm install
 
 # Bundle the source code inside the Docker image
-COPY . .
+COPY front-boblog .
 
 # Make port 3000 available outside of this container
 EXPOSE 3000
