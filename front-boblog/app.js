@@ -12,7 +12,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 app.get('/cubes', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'colorCube.html'));
+  res.sendFile(path.join(__dirname, 'public', 'colorCube/colorCube.html'));
+});
+app.get('/snake', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'snake/snake.html'));
 });
 app.get('/is_ready', (req, res) => {
     res.status(200).send('Service is ready');
