@@ -20,6 +20,9 @@ app.get('/cubes', (req, res) => {
 app.get('/test', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'test/test.html'));
 });
+app.get('/output.css', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'output.css'));
+});
 app.get('/is_ready', (req, res) => {
     res.status(200).send('Service is ready');
 });
