@@ -17,6 +17,9 @@ app.get('/snake', (req, res) => {
 app.get('/cubes', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'colorCube/colorCube.html'));
 });
+app.get('/test', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'test/test.html'));
+});
 app.get('/is_ready', (req, res) => {
     res.status(200).send('Service is ready');
 });
