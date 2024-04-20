@@ -138,10 +138,10 @@ namespace snake{
 
         }
     });
-    b_u.addEventListener('click', handle_input({x : 0, y : -1}));
-    b_l.addEventListener('click', handle_input({x : -1, y : 0}));
-    b_r.addEventListener('click', handle_input({x : 1, y : 0}));
-    b_d.addEventListener('click', handle_input({x : 0, y : 1}));
+    b_u.addEventListener('touchstart', handle_input({x : 0, y : -1}));
+    b_l.addEventListener('touchstart', handle_input({x : -1, y : 0}));
+    b_r.addEventListener('touchstart', handle_input({x : 1, y : 0}));
+    b_d.addEventListener('touchstart', handle_input({x : 0, y : 1}));
     function init() {
         canvas.width = side_lenght;
         canvas.height = side_lenght;
