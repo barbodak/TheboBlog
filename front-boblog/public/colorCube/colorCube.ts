@@ -3,6 +3,7 @@ namespace colorCube{
     const input = document.getElementById("mytext")! as HTMLInputElement;
     const size_input = document.getElementById("myRange")! as HTMLInputElement;
     const check = document.getElementById("myCheck")! as HTMLInputElement;
+    const hmm = document.getElementById("hmm")! as HTMLInputElement;
     canvas.width = window.innerWidth * 0.9;
     canvas.height = window.innerHeight * 0.75;
     const ctx = canvas.getContext('2d')!;
@@ -104,6 +105,7 @@ namespace colorCube{
     handleChange();
     check.addEventListener('change', dissMouse);
     input.addEventListener('change', handleChange);
+    hmm.addEventListener('click', handleClick);
     size_input.addEventListener('change', () => {siz = Math.max((size_input.valueAsNumber / 100) * (size_input.valueAsNumber / 100) * (size_input.valueAsNumber / 100) * Math.min(canvas.height, canvas.width), 1);});
     setInterval(init_cube, 10);
 
