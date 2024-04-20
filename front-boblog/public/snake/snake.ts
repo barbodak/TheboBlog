@@ -40,10 +40,13 @@ namespace snake{
 
 
     function spawn_fruit() {
+        console.log('b');
         fruit = rand_point(side_cells);
         let tmp : Cell = map.get(sp(fruit))!;
         while (tmp.type != "empty") {
+            console.log(tmp);
             fruit = rand_point(side_cells);
+            tmp = map.get(sp(fruit))!;
         }
         map.set(sp(fruit), {type : "fruit", is_empty : false});
     }
@@ -80,6 +83,7 @@ namespace snake{
             map.set(sp(head), {type : "body", is_empty : false});
             body.push(head);
             lenght++;
+            console.log('a');
             spawn_fruit();
         }
         else if (map.get(sp(head))!.type == "body") {
