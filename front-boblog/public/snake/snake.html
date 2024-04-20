@@ -15,8 +15,24 @@
     <body class="flex flex-col justify-center place-items-center bg-gray-50">
         <canvas id="gameCanvas" class="bg-gray-300 rounded-xl block m-10 border-dotted border-4 border-black"></canvas>
         <br> 
-        <div class="mobile-only">
-            This content is visible on mobile devices only.
+        <div class="hidden md:block lg:hidden">
+            <div class="flex flex-col items-center justify-center border-dashed border-black border-4 p-10 bg-gray-200 rounded-lg">
+                <div class="flex mb-2">
+                    <div class="w-10 h-10"></div> <!-- Spacer -->
+                    <button class="w-10 h-10 p-16 bg-blue-600 rounded-t-3xl focus:outline-none border-black border-2 focus:ring-2 focus:ring-blue-500" id="b-u"></button>
+                    <div class="w-10 h-10"></div> <!-- Spacer -->
+                </div>
+                <div class="flex mb-2">
+                    <button class="w-10 h-10 p-16 bg-green-600 rounded-l-3xl focus:outline-none border-black border-2 focus:ring-2 focus:ring-blue-500 "id="b-l"></button>
+                    <div class="w-10 h-10 mx-2 p-16 bg-gray-700  "></div> <!-- Center button or label -->
+                    <button class="w-10 h-10 p-16 bg-red-600 rounded-r-3xl focus:outline-none border-black border-2 focus:ring-2 focus:ring-blue-500" id="b-r"></button>
+                </div>
+                <div class="flex">
+                    <div class="w-10 h-10"></div> <!-- Spacer -->
+                    <button class="w-10 h-10 p-16 bg-yellow-400 rounded-b-3xl focus:outline-none border-black border-2 focus:ring-2 focus:ring-blue-500" id="b-d"></button>
+                    <div class="w-10 h-10"></div> <!-- Spacer -->
+                </div>
+            </div>
         </div>
         <script  src="snake.js"></script>
     </body>

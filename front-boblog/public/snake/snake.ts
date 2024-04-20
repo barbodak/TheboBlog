@@ -20,6 +20,10 @@ namespace snake{
         return JSON.stringify({ x: point.x, y: point.y });
     }
     const canvas = document.getElementById('gameCanvas')! as HTMLCanvasElement;
+    const b_u = document.getElementById("b-u")! as HTMLInputElement;
+    const b_l = document.getElementById("b-l")! as HTMLInputElement;
+    const b_r = document.getElementById("b-r")! as HTMLInputElement;
+    const b_d = document.getElementById("b-d")! as HTMLInputElement;
     // Other variables and logic specific to ColorCube
 
     // basic game variables
@@ -62,10 +66,10 @@ namespace snake{
 
     function move() : void {
         frame++;
-       if (frame < Math.max(interval - Math.floor(lenght / 2), 5)) 
-            return;
+        if (frame < Math.max(interval - Math.floor(lenght / 2), 5)) 
+        return;
         frame = 0;
-            
+
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         // console.log(head);
         head = addP(head, direction);
@@ -88,7 +92,7 @@ namespace snake{
         }
         else if (map.get(sp(head))!.type == "body") {
             if (lenght > 1)
-               init();
+            init();
         }
 
         for (let i = 0; i < lenght; i++) {
@@ -96,38 +100,48 @@ namespace snake{
         }
         draw(fruit.x, fruit.y, "#FF0000");
     }
+    function handle_input(new_direction : Point) {
+        return (event : Event) => {
+            direction = new_direction;
+            if (last_direction.x != new_direction.x * -1 || last_direction.y != new_direction.y * -1)
+                last_direction = direction;
+            else
+                direction = last_direction;
+
+        }
+    }
 
     document.addEventListener('keydown', (event: KeyboardEvent) => {
         switch (event.key) {
             case 'w':
             case 'W':
-                direction = {x : 0, y : -1};
-                console.log('W key was pressed');
+            case 'ArrowUp':
+                handle_input({x: 0, y: -1})(event);
                 break;
             case 'a':
             case 'A':
-                direction = {x : -1, y : 0};
-                console.log('A key was pressed');
-                break;
-            case 's':
-            case 'S':
-                direction = {x : 0, y : 1};
-                console.log('S key was pressed');
+            case 'ArrowLeft':
+                handle_input({x: -1, y: 0})(event);
                 break;
             case 'd':
             case 'D':
-                direction = {x : 1, y : 0};
-                console.log('D key was pressed');
+            case 'ArrowRight':
+                handle_input({x: 1, y: 0})(event);
+                break;
+            case 's':
+            case 'S':
+            case 'ArrowDown':
+                handle_input({x: 0, y: 1})(event);
                 break;
             default:
-                // Handle any other key press
                 break;
+
         }
-        if (direction.x != last_direction.x * -1 || direction.y != last_direction.y * -1)
-            last_direction = direction;
-        else
-            direction = last_direction;
     });
+    b_u.addEventListener('click', handle_input({x : 0, y : -1}));
+    b_l.addEventListener('click', handle_input({x : -1, y : 0}));
+    b_r.addEventListener('click', handle_input({x : 1, y : 0}));
+    b_d.addEventListener('click', handle_input({x : 0, y : 1}));
     function init() {
         canvas.width = side_lenght;
         canvas.height = side_lenght;
